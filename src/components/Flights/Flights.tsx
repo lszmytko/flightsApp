@@ -1,22 +1,28 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import { Flight } from "../Flight/Flight";
+import { FlightType } from "./Flights.types";
+
+const apiRoute = process.env.REACT_APP_FLIGHTS_API;
 
 const Flights = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const {
+    data: flights,
+    isLoading,
+    error,
+  } = useFetch<FlightType[]>(`${apiRoute}/flights`);
 
-  const apiRoute = process.env.FLIGHTS_API as string;
+  console.log(flights);
 
-  useEffect(() => {
-    const getFlights = async () => {
-      const response = await axios.get(`${apiRoute}/flights`);
-      console.log(response);
-    };
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error!</div>;
 
-    getFlights();
-  }, []);
-
-  return <div>ok</div>;
+  return (
+    <div>
+      {flights?.map(({ price, airlineCode }) => {
+        return <Flight airlineCode={airlineCode} />;
+      })}
+    </div>
+  );
 };
 
 export default Flights;
