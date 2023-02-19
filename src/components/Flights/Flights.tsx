@@ -1,3 +1,5 @@
+import { Audio } from "react-loader-spinner";
+
 import useFetch from "../../hooks/useFetch";
 import { Flight } from "../Flight/Flight";
 import { FlightType } from "./Flights.types";
@@ -13,7 +15,18 @@ const Flights = () => {
 
   console.log(flights);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <Audio
+        height="100"
+        width="100"
+        color="#4fa94d"
+        ariaLabel="audio-loading"
+        wrapperStyle={{}}
+        wrapperClass="wrapper-class"
+        visible={true}
+      />
+    );
   if (error) return <div>Error!</div>;
 
   return (
