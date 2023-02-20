@@ -1,6 +1,12 @@
+type FlightDetails = {
+  code: string;
+  name: string;
+  dateTime: string;
+};
+
 type Bound = {
-  departure: Object;
-  destiantion: Object;
+  departure: FlightDetails;
+  destination: FlightDetails;
   duration: string;
 };
 

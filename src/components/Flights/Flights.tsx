@@ -14,6 +14,8 @@ const Flights = () => {
     error,
   } = useFetch<FlightType[]>(`${apiRoute}/flights`);
 
+  console.log({ flights });
+
   return (
     <Styled.Wrapper>
       {isLoading && (
@@ -28,9 +30,11 @@ const Flights = () => {
         />
       )}
       {error && <div>error</div>}
-      {flights?.map(({ price, airlineCode }) => {
-        return <Flight airlineCode={airlineCode} />;
-      })}
+      <div>
+        {flights?.map(({ price, airlineCode }) => {
+          return <Flight airlineCode={airlineCode} price={price} />;
+        })}
+      </div>
     </Styled.Wrapper>
   );
 };
