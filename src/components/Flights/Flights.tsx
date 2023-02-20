@@ -31,8 +31,10 @@ const Flights = () => {
       )}
       {error && <div>error</div>}
       <div>
-        {flights?.map(({ price, airlineCode }) => {
-          return <Flight airlineCode={airlineCode} price={price} />;
+        {flights?.map(({ price, airlineCode, bounds }) => {
+          return (
+            <Flight airlineCode={airlineCode} price={price} bounds={bounds} />
+          );
         })}
       </div>
     </Styled.Wrapper>
