@@ -1,8 +1,7 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import Flights from "./pages/Flights";
-import { Failure } from "./pages/Failure";
-import { Success } from "./pages/Success";
+import { Confirmation } from "./pages/Confirmation";
 
 const Routes = () => {
   return (
@@ -10,11 +9,8 @@ const Routes = () => {
       <Route path="/flights">
         <Flights />
       </Route>
-      <Route path="/success">
-        <Success />
-      </Route>
-      <Route path="/failure">
-        <Failure />
+      <Route path="/confirmation">
+        <Confirmation />
       </Route>
       <Route path="*">
         <Redirect to="flights" />

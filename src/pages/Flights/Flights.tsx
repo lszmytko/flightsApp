@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { Audio } from "react-loader-spinner";
 
 import { FlightType, SortOptionType } from "./Flights.types";
 import * as Styled from "./Flights.styled";
+import { sortFlights } from "./sortFlights";
+
 import useFetch from "../../hooks/useFetch";
 import { Flight } from "../../components/Flight/Flight";
 import { apiRoute } from "../../config/consts/routes";
 import { SortInput } from "../../components/SortInput";
-import { useState } from "react";
-import { sortFlights } from "./sortFlights";
 
 const Flights = () => {
   const [sortingOption, setSortingOption] = useState<SortOptionType>("price");

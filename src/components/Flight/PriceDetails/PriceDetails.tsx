@@ -18,11 +18,10 @@ export const PriceDetails = ({
     try {
       setIsButtonClicked(true);
       await axios.post(`${apiRoute}/flights${uuid}`);
-      history.push("/success");
+      history.push("/confirmation", { result: "success" });
     } catch (e) {
-      history.push("/failure");
+      history.push("/confirmation", { result: "failure" });
     }
-    setIsButtonClicked(false);
   };
 
   return (
