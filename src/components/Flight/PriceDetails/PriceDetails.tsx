@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import { apiRoute } from "../../../config/consts/routes";
 import * as Styled from "./PriceDetails.styled";
+import { flightApiRoute } from "../../../config/consts/routes";
 
 export const PriceDetails = ({
   amount,
@@ -17,7 +17,7 @@ export const PriceDetails = ({
   const handleBookFlight = async () => {
     try {
       setIsButtonClicked(true);
-      await axios.post(`${apiRoute}/flights${uuid}`);
+      await axios.post(`${flightApiRoute}/flights/:${uuid}`);
       history.push("/confirmation", { result: "success" });
     } catch (e) {
       history.push("/confirmation", { result: "failure" });

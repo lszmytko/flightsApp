@@ -1,1 +1,1 @@
-export const apiRoute = process.env.REACT_APP_FLIGHTS_API;
+export const flightApiRoute = "http://localhost:3001";

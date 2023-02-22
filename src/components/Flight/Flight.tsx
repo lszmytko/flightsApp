@@ -4,22 +4,20 @@ import { convertPrice } from "./utils";
 import { Details } from "./Details";
 import { PriceDetails } from "./PriceDetails";
 
-type Flight = Pick<FlightType, "airlineCode" | "price" | "bounds" | "uuid">;
-
 export const Flight = ({
   airlineCode,
   price: { amount, currency },
   bounds,
   uuid,
-}: Flight) => {
+}: FlightType) => {
   const amountWithCommas = convertPrice(amount, currency);
 
   return (
     <Styled.Wrapper>
       <div>
-        <Details airlineCode={airlineCode} bounds={bounds} textAlign="left" />
+        <Details airlineCode={airlineCode} bounds={bounds} />
         <Styled.Divider />
-        <Details airlineCode={airlineCode} bounds={bounds} textAlign="right" />
+        <Details airlineCode={airlineCode} bounds={bounds} />
       </div>
       <PriceDetails amount={amountWithCommas} uuid={uuid} />
     </Styled.Wrapper>

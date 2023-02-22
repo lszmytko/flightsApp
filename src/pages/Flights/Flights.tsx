@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Audio } from "react-loader-spinner";
 
 import { FlightType, SortOptionType } from "./Flights.types";
 import * as Styled from "./Flights.styled";
@@ -7,8 +6,10 @@ import { sortFlights } from "./sortFlights";
 
 import useFetch from "../../hooks/useFetch";
 import { Flight } from "../../components/Flight/Flight";
-import { apiRoute } from "../../config/consts/routes";
+import { flightApiRoute } from "../../config/consts/routes";
 import { SortInput } from "../../components/SortInput";
+import { theme } from "../../config/theme";
+import { Loader } from "../../components/Loader";
 
 const Flights = () => {
   const [sortingOption, setSortingOption] = useState<SortOptionType>("price");
@@ -16,7 +17,7 @@ const Flights = () => {
     data: flights,
     isLoading,
     error,
-  } = useFetch<FlightType[]>(`${apiRoute}/flights`);
+  } = useFetch<FlightType[]>(`${flightApiRoute}/flights`);
 
   console.log({ flights });
 
@@ -28,32 +29,29 @@ const Flights = () => {
 
   return (
     <Styled.Wrapper>
-      {isLoading && (
-        <Audio
-          height="100"
-          width="100"
-          color="#4fa94d"
-          ariaLabel="audio-loading"
-          wrapperStyle={{}}
-          wrapperClass="wrapper-class"
-          visible={true}
-        />
-      )}
-      {error && <div>error</div>}
-      <div>
-        <SortInput value={sortingOption} onInputChange={handleInputChange} />
-        {sortedFlights?.map(({ price, airlineCode, bounds, uuid }) => {
-          return (
-            <Flight
-              key={uuid}
-              airlineCode={airlineCode}
-              price={price}
-              bounds={bounds}
-              uuid={uuid}
+      {isLoading && <Loader />}
+      {error && <Styled.Error>Something went wrong ...</Styled.Error>}
+      {flights && (
+        <div>
+          <Styled.InputWrapper>
+            <SortInput
+              value={sortingOption}
+              onInputChange={handleInputChange}
             />
-          );
-        })}
-      </div>
+          </Styled.InputWrapper>
+          {sortedFlights?.map(({ price, airlineCode, bounds, uuid }) => {
+            return (
+              <Flight
+                key={uuid}
+                airlineCode={airlineCode}
+                price={price}
+                bounds={bounds}
+                uuid={uuid}
+              />
+            );
+          })}
+        </div>
+      )}
     </Styled.Wrapper>
   );
 };

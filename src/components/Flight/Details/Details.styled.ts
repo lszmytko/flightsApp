@@ -24,7 +24,8 @@ export const Logo = styled.img`
   @media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
     position: absolute;
     width: 53px;
-    top: 0px;
+    height: 49px;
+    top: 22px;
     left: 20px;
   }
 `;

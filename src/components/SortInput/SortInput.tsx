@@ -1,5 +1,7 @@
 import { InputValueType } from "../../pages/Flights";
 
+import * as Styled from "./SortInput.styled";
+
 export const SortInput = ({
   value,
   onInputChange,
@@ -8,9 +10,9 @@ export const SortInput = ({
   onInputChange: (value: InputValueType) => void;
 }) => {
   return (
-    <select value={value} onChange={() => onInputChange(value)}>
+    <Styled.Select value={value} onChange={() => onInputChange(value)}>
       <option value="Price">Price</option>
       <option value="Departure Time">Departure Time</option>
-    </select>
+    </Styled.Select>
   );
 };

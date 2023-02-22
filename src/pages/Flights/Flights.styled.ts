@@ -7,3 +7,14 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const InputWrapper = styled.div`
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Error = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+`;

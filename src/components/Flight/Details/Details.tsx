@@ -2,18 +2,16 @@ import * as Styled from "./Details.styled";
 import { getDate, getDuration, getHour, getLogoSrc } from "./utils";
 import { FlightType } from "../../../pages/Flights/Flights.types";
 
-type DetailsType = Pick<FlightType, "airlineCode" | "bounds"> & {
-  textAlign: "right" | "left";
-};
+type DetailsType = Pick<FlightType, "airlineCode" | "bounds">;
 
-export const Details = ({ airlineCode, bounds, textAlign }: DetailsType) => {
-  const [firstFlight, secondFlight] = bounds;
-  const durationString = bounds[0].duration;
+export const Details = ({ airlineCode, bounds }: DetailsType) => {
+  const [firstFlight] = bounds;
+  const durationString = firstFlight.duration;
   return (
     <Styled.ContentWrapper>
       <Styled.Header>
         <Styled.Logo src={getLogoSrc(airlineCode)} />
-        <Styled.DetailsButton>Vluchdetails</Styled.DetailsButton>
+        <Styled.DetailsButton>Vluchtdetails</Styled.DetailsButton>
       </Styled.Header>
       <Styled.Wrapper>
         <Styled.DetailsWrapper textAlign="right">
