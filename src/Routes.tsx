@@ -1,6 +1,6 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import Flights from "./components/Flights";
+import Flights from "./pages/Flights";
 import { Failure } from "./pages/Failure";
 import { Success } from "./pages/Success";
 

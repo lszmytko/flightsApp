@@ -1,5 +1,5 @@
 import * as Styled from "./Flight.styled";
-import { FlightType } from "../Flights/Flights.types";
+import { FlightType } from "../../pages/Flights/Flights.types";
 import { convertPrice } from "./utils";
 import { Details } from "./Details";
 import { PriceDetails } from "./PriceDetails";

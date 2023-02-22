@@ -1,4 +1,4 @@
-import { InputValueType } from "../Flights";
+import { InputValueType } from "../../pages/Flights";
 
 export const SortInput = ({
   value,

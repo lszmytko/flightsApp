@@ -1,6 +1,6 @@
 import * as Styled from "./Details.styled";
 import { getDate, getDuration, getHour, getLogoSrc } from "./utils";
-import { FlightType } from "../../Flights/Flights.types";
+import { FlightType } from "../../../pages/Flights/Flights.types";
 
 type DetailsType = Pick<FlightType, "airlineCode" | "bounds"> & {
   textAlign: "right" | "left";
