@@ -3,12 +3,13 @@ import { getDate, getDuration, getHour, getLogoSrc } from "./utils";
 import { FlightType } from "../../../pages/Flights/Flights.types";
 import { useFlightsContext } from "../../../pages/Flights";
 
-type DetailsType = Pick<FlightType, "airlineCode" | "bounds">;
+type DetailsType = Pick<FlightType, "bounds">;
 
 export const Details = ({ airlineCode, bounds }: DetailsType) => {
-  // const {handleModalOpen, isModalOpen) = useFlightsContext() || {};
+  const { handleModalOpen, isModalOpen } = useFlightsContext();
   const [firstFlight] = bounds;
-  const durationString = firstFlight.duration;
+  const { duration: durationString } = firstFlight;
+
   return (
     <Styled.ContentWrapper>
       <Styled.Header>

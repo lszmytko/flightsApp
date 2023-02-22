@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { FlightsContextProvider, useFlightsContext } from "./FlightsContext";
 import { FlightType, SortOptionType } from "./Flights.types";
 import * as Styled from "./Flights.styled";
 import { sortFlights } from "./sortFlights";
@@ -8,7 +9,6 @@ import { Flight } from "../../components/Flight/Flight";
 import { SortInput } from "../../components/SortInput";
 import { Loader } from "../../components/Loader";
 import { flightApiRoute } from "../../config/consts/routes";
-import { FlightsContext } from "./FlightsContext";
 
 const Flights = () => {
   const [sortingOption, setSortingOption] = useState<SortOptionType>("price");
@@ -17,6 +17,7 @@ const Flights = () => {
     isLoading,
     error,
   } = useFetch<FlightType[]>(`${flightApiRoute}/flights`);
+  const { isModalOpen } = useFlightsContext();
 
   console.log({ flights });
 
@@ -26,6 +27,7 @@ const Flights = () => {
     setSortingOption(value);
   };
 
+  if (isModalOpen) return <div>kkkk</div>;
   return (
     <Styled.Wrapper>
       {isLoading && <Loader />}
@@ -55,17 +57,12 @@ const Flights = () => {
   );
 };
 
-const FlightsWithContext = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
+const FlightsWithProvider = () => {
   return (
-    <FlightsContext.Provider value={{ isModalOpen, handleModalOpen }}>
+    <FlightsContextProvider>
       <Flights />
-    </FlightsContext.Provider>
+    </FlightsContextProvider>
   );
 };
 
-export default FlightsWithContext;
+export default FlightsWithProvider;
