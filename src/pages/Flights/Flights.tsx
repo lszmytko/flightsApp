@@ -3,13 +3,12 @@ import { useState } from "react";
 import { FlightType, SortOptionType } from "./Flights.types";
 import * as Styled from "./Flights.styled";
 import { sortFlights } from "./sortFlights";
-
 import useFetch from "../../hooks/useFetch";
 import { Flight } from "../../components/Flight/Flight";
-import { flightApiRoute } from "../../config/consts/routes";
 import { SortInput } from "../../components/SortInput";
-import { theme } from "../../config/theme";
 import { Loader } from "../../components/Loader";
+import { flightApiRoute } from "../../config/consts/routes";
+import { FlightsContext } from "./FlightsContext";
 
 const Flights = () => {
   const [sortingOption, setSortingOption] = useState<SortOptionType>("price");
@@ -56,4 +55,17 @@ const Flights = () => {
   );
 };
 
-export default Flights;
+const FlightsWithContext = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  return (
+    <FlightsContext.Provider value={{ isModalOpen, handleModalOpen }}>
+      <Flights />
+    </FlightsContext.Provider>
+  );
+};
+
+export default FlightsWithContext;

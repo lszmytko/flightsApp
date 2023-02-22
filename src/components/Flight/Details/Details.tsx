@@ -1,10 +1,12 @@
 import * as Styled from "./Details.styled";
 import { getDate, getDuration, getHour, getLogoSrc } from "./utils";
 import { FlightType } from "../../../pages/Flights/Flights.types";
+import { useFlightsContext } from "../../../pages/Flights";
 
 type DetailsType = Pick<FlightType, "airlineCode" | "bounds">;
 
 export const Details = ({ airlineCode, bounds }: DetailsType) => {
+  // const {handleModalOpen, isModalOpen) = useFlightsContext() || {};
   const [firstFlight] = bounds;
   const durationString = firstFlight.duration;
   return (

@@ -1,13 +1,12 @@
-import { InputValueType } from "../../pages/Flights";
-
 import * as Styled from "./SortInput.styled";
+import { SortOptionType } from "../../pages/Flights";
 
 export const SortInput = ({
   value,
   onInputChange,
 }: {
-  value: InputValueType;
-  onInputChange: (value: InputValueType) => void;
+  value: SortOptionType;
+  onInputChange: (value: SortOptionType) => void;
 }) => {
   return (
     <Styled.Select value={value} onChange={() => onInputChange(value)}>

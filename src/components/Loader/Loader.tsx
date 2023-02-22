@@ -1,4 +1,5 @@
 import { Audio } from "react-loader-spinner";
+
 import { theme } from "../../config/theme";
 
 export const Loader = () => (

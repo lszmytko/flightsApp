@@ -1,8 +1,11 @@
+import { useInView } from "react-intersection-observer";
+
 import * as Styled from "./Flight.styled";
-import { FlightType } from "../../pages/Flights/Flights.types";
-import { convertPrice } from "./utils";
+import { convertPrice } from "./convertPrice";
 import { Details } from "./Details";
 import { PriceDetails } from "./PriceDetails";
+
+import { FlightType } from "../../pages/Flights/Flights.types";
 
 export const Flight = ({
   airlineCode,
@@ -10,16 +13,25 @@ export const Flight = ({
   bounds,
   uuid,
 }: FlightType) => {
+  const { ref, inView } = useInView({
+    rootMargin: "10px",
+    triggerOnce: true,
+  });
+
   const amountWithCommas = convertPrice(amount, currency);
 
   return (
-    <Styled.Wrapper>
-      <div>
-        <Details airlineCode={airlineCode} bounds={bounds} />
-        <Styled.Divider />
-        <Details airlineCode={airlineCode} bounds={bounds} />
-      </div>
-      <PriceDetails amount={amountWithCommas} uuid={uuid} />
+    <Styled.Wrapper ref={ref}>
+      {inView && (
+        <>
+          <div>
+            <Details airlineCode={airlineCode} bounds={bounds} />
+            <Styled.Divider />
+            <Details airlineCode={airlineCode} bounds={bounds} />
+          </div>
+          <PriceDetails amount={amountWithCommas} uuid={uuid} />
+        </>
+      )}
     </Styled.Wrapper>
   );
 };
