@@ -4,8 +4,7 @@ import { FlightType } from "./Flights.types";
 import * as Styled from "./Flights.styled";
 import useFetch from "../../hooks/useFetch";
 import { Flight } from "../Flight/Flight";
-
-const apiRoute = process.env.REACT_APP_FLIGHTS_API;
+import { apiRoute } from "../../config/consts/routes";
 
 const Flights = () => {
   const {
@@ -31,9 +30,14 @@ const Flights = () => {
       )}
       {error && <div>error</div>}
       <div>
-        {flights?.map(({ price, airlineCode, bounds }) => {
+        {flights?.map(({ price, airlineCode, bounds, uuid }) => {
           return (
-            <Flight airlineCode={airlineCode} price={price} bounds={bounds} />
+            <Flight
+              airlineCode={airlineCode}
+              price={price}
+              bounds={bounds}
+              uuid={uuid}
+            />
           );
         })}
       </div>

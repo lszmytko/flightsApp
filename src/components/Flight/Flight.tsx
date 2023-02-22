@@ -1,46 +1,27 @@
 import * as Styled from "./Flight.styled";
 import { FlightType } from "../Flights/Flights.types";
-import {
-  convertPrice,
-  getDate,
-  getDuration,
-  getHour,
-  getLogoSrc,
-} from "./utils";
+import { convertPrice } from "./utils";
+import { Details } from "./Details";
+import { PriceDetails } from "./PriceDetails";
 
-type Flight = Pick<FlightType, "airlineCode" | "price" | "bounds">;
+type Flight = Pick<FlightType, "airlineCode" | "price" | "bounds" | "uuid">;
 
 export const Flight = ({
   airlineCode,
   price: { amount, currency },
   bounds,
+  uuid,
 }: Flight) => {
   const amountWithCommas = convertPrice(amount, currency);
-  const [firstFlight, secondFlight] = bounds;
+
   return (
-    <section>
+    <Styled.Wrapper>
       <div>
-        <div>
-          <Styled.Logo src={getLogoSrc(airlineCode)} />
-          <Styled.DetailsButton>Vluchdetails</Styled.DetailsButton>
-        </div>
-        <Styled.Detail>
-          <p>{firstFlight.departure.code}</p>
-          <Styled.Hour>{getHour(firstFlight.departure.dateTime)}</Styled.Hour>
-          <p>{getDate(firstFlight.departure.dateTime)}</p>
-        </Styled.Detail>
-        <Styled.Duration>
-          <p>{getDuration(firstFlight.duration)}</p>
-        </Styled.Duration>
+        <Details airlineCode={airlineCode} bounds={bounds} textAlign="left" />
+        <Styled.Divider />
+        <Details airlineCode={airlineCode} bounds={bounds} textAlign="right" />
       </div>
-      <p>{firstFlight.departure.code}</p>
-      <Styled.PriceWrapper>
-        <Styled.Triangle />
-        <Styled.Price>
-          {amountWithCommas} <Styled.PpSpan>p.p.</Styled.PpSpan>
-        </Styled.Price>
-        <Styled.BookButton>Book Flight</Styled.BookButton>
-      </Styled.PriceWrapper>
-    </section>
+      <PriceDetails amount={amountWithCommas} uuid={uuid} />
+    </Styled.Wrapper>
   );
 };

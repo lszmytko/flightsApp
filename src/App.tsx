@@ -1,6 +1,6 @@
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
-import Routes from "./components/Routes";
+import Routes from "./Routes";
 import { theme } from "./config/theme";
 
 function App() {
