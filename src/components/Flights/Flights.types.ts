@@ -19,3 +19,5 @@ export type FlightType = {
   };
   uuid: string;
 };
+
+export type SortOptionType = "price" | "departureTime";

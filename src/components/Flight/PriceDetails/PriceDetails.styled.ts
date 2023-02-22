@@ -87,13 +87,19 @@ export const BookButton = styled(Button)`
   width: 140px;
   border-radius: 24px;
   padding: 13px 0 12px;
-  background: #008eff;
+  background: ${(props) => props.theme.colors.blue.primary};
   color: #ffffff;
   font-size: 16px;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
   line-height: 19px;
   text-align: center;
+  cursor: pointer;
+  transition: linear 0.2s;
+
+  &:hover {
+    background: ${(props) => props.theme.colors.blue.hover};
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
     width: 180px;

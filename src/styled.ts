@@ -6,6 +6,10 @@ declare module "styled-components" {
     colors: {
       btnBackground: string;
       grey: string;
+      blue: {
+        primary: string;
+        hover: string;
+      };
     };
     fonts: {
       primary: "Montserrat";
