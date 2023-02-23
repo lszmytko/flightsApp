@@ -4,8 +4,6 @@ import { useFlightsContext } from "../../../pages/Flights";
 export const ModalInfo = () => {
   const { flightModalData } = useFlightsContext();
 
-  console.log({ flightModalData });
-
   if (flightModalData === null)
     return (
       <Styled.Wrapper>

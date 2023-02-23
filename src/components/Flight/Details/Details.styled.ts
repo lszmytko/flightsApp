@@ -18,14 +18,14 @@ export const Header = styled.header`
   }
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img<{ withButton: boolean }>`
   width: 37px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
     position: absolute;
     width: 53px;
     height: 49px;
-    top: 22px;
+    top: ${(props) => (props.withButton ? "25px" : "13px")};
     left: 20px;
   }
 `;

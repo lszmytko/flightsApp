@@ -32,7 +32,6 @@ export const FlightsContextProvider = ({
   const [isApiCallLoading, setIsApiCallLoading] = useState(false);
 
   const handleModalOpen = (data: ModalData | null) => {
-    console.log("handleopen");
     setIsModalOpen(true);
     setFlightModalData(data);
   };

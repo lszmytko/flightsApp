@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { Button } from "../../common/Button";
 
 export const Wrapper = styled.div`
+  display: flex;
   height: 100vh;
   width: 100vw;
-  display: flex;
   justify-content: center;
   align-items: center;
 `;

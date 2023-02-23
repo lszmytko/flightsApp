@@ -21,7 +21,6 @@ export const Icon = styled(AiOutlineClose)`
   z-index: 100;
   right: 0;
   top: 0;
-  /* transform: translate(50%, -50%); */
   height: ${iconSize};
   font-size: ${iconSize};
   line-height: ${iconSize};

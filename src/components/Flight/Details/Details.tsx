@@ -30,13 +30,12 @@ export const Details = ({
     setIsApiCallLoading(false);
     handleModalOpen(data);
     uuid && setUuid(uuid);
-    console.log({ uuid });
   };
 
   return (
     <Styled.ContentWrapper>
       <Styled.Header>
-        <Styled.Logo src={getLogoSrc(airlineCode)} />
+        <Styled.Logo src={getLogoSrc(airlineCode)} withButton={withButton} />
         {withButton && (
           <Styled.DetailsButton onClick={handleClick}>
             Vluchtdetails

@@ -1,5 +1,4 @@
 import Modal from "react-modal";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 
 import * as Styled from "./DetailsModal.styled";
 import { useFlightsContext } from "../../pages/Flights";

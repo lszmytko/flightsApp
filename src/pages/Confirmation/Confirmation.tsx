@@ -2,12 +2,17 @@ import { useLocation } from "react-router-dom";
 
 import * as Styled from "./Confirmation.styled";
 
+const resultMessages: Record<"success" | "failure", string> = {
+  success: "Operation ended successgully",
+  failure: "operation resulted in an error",
+};
+
 export const Confirmation = () => {
   const { state } = useLocation<{ result: "success" | "failure" }>();
-  console.log(state);
+
   return (
     <Styled.Wrapper>
-      <Styled.Info>{state.result}</Styled.Info>
+      <Styled.Info>{resultMessages[state.result]}</Styled.Info>
       <Styled.GoBackBtn onClick={() => window.history.back()}>
         Go back
       </Styled.GoBackBtn>

@@ -20,15 +20,11 @@ const Flights = () => {
   } = useFetch<FlightType[]>(`${flightApiRoute}/flights`);
   const { isApiCallLoading } = useFlightsContext();
 
-  console.log({ flights });
-
-  const sortedFlights = sortFlights(sortingOption, flights);
-
   const handleInputChange = (value: SortOptionType) => {
     setSortingOption(value);
   };
 
-  console.log({ isApiCallLoading });
+  const sortedFlights = sortFlights(sortingOption, flights);
 
   if (isApiCallLoading)
     return (
@@ -46,10 +42,7 @@ const Flights = () => {
         {flights && (
           <div>
             <Styled.InputWrapper>
-              <SortInput
-                value={sortingOption}
-                onInputChange={handleInputChange}
-              />
+              <SortInput onInputChange={handleInputChange} />
             </Styled.InputWrapper>
             {sortedFlights?.map(({ price, airlineCode, bounds, uuid }) => {
               return (

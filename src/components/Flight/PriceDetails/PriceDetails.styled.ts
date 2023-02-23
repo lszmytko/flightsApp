@@ -52,7 +52,6 @@ export const Price = styled.div`
   display: flex;
   color: black;
   font-size: 28px;
-  font-family: "Montserrat", sans-serif;
   font-weight: bold;
 
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
@@ -91,7 +90,6 @@ export const BookButton = styled(Button)`
   color: #ffffff;
   font-size: 16px;
   font-weight: bold;
-  font-family: "Montserrat", sans-serif;
   line-height: 19px;
   text-align: center;
   transition: linear 0.2s;
