@@ -1,20 +1,47 @@
 import * as Styled from "./Details.styled";
-import { getDate, getDuration, getHour, getLogoSrc } from "./utils";
+import {
+  getDate,
+  getDuration,
+  getHour,
+  getLogoSrc,
+  getModalFlightData,
+} from "./utils";
 import { FlightType } from "../../../pages/Flights/Flights.types";
 import { useFlightsContext } from "../../../pages/Flights";
 
-type DetailsType = Pick<FlightType, "bounds">;
+type DetailsType = Pick<FlightType, "airlineCode" | "bounds"> &
+  Partial<Pick<FlightType, "uuid">> & {
+    withButton: boolean;
+  };
 
-export const Details = ({ airlineCode, bounds }: DetailsType) => {
-  const { handleModalOpen, isModalOpen } = useFlightsContext();
+export const Details = ({
+  airlineCode,
+  bounds,
+  withButton,
+  uuid,
+}: DetailsType) => {
+  const { handleModalOpen, setUuid, setIsApiCallLoading } = useFlightsContext();
   const [firstFlight] = bounds;
   const { duration: durationString } = firstFlight;
+
+  const handleClick = async () => {
+    setIsApiCallLoading(true);
+    const data = await getModalFlightData(uuid);
+    setIsApiCallLoading(false);
+    handleModalOpen(data);
+    uuid && setUuid(uuid);
+    console.log({ uuid });
+  };
 
   return (
     <Styled.ContentWrapper>
       <Styled.Header>
         <Styled.Logo src={getLogoSrc(airlineCode)} />
-        <Styled.DetailsButton>Vluchtdetails</Styled.DetailsButton>
+        {withButton && (
+          <Styled.DetailsButton onClick={handleClick}>
+            Vluchtdetails
+          </Styled.DetailsButton>
+        )}
       </Styled.Header>
       <Styled.Wrapper>
         <Styled.DetailsWrapper textAlign="right">

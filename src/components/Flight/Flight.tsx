@@ -25,9 +25,18 @@ export const Flight = ({
       {inView && (
         <>
           <div>
-            <Details airlineCode={airlineCode} bounds={bounds} />
+            <Details
+              airlineCode={airlineCode}
+              bounds={bounds}
+              withButton={true}
+              uuid={uuid}
+            />
             <Styled.Divider />
-            <Details airlineCode={airlineCode} bounds={bounds} />
+            <Details
+              airlineCode={airlineCode}
+              bounds={bounds}
+              withButton={false}
+            />
           </div>
           <PriceDetails amount={amountWithCommas} uuid={uuid} />
         </>

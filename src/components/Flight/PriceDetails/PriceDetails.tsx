@@ -4,6 +4,7 @@ import axios from "axios";
 
 import * as Styled from "./PriceDetails.styled";
 import { flightApiRoute } from "../../../config/consts/routes";
+import { useFlightsContext } from "../../../pages/Flights";
 
 export const PriceDetails = ({
   amount,
@@ -14,12 +15,17 @@ export const PriceDetails = ({
 }) => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const history = useHistory();
+  const { setIsApiCallLoading } = useFlightsContext();
+
   const handleBookFlight = async () => {
     try {
+      setIsApiCallLoading(true);
       setIsButtonClicked(true);
       await axios.post(`${flightApiRoute}/flights/:${uuid}`);
+      setIsApiCallLoading(false);
       history.push("/confirmation", { result: "success" });
     } catch (e) {
+      setIsApiCallLoading(false);
       history.push("/confirmation", { result: "failure" });
     }
   };
